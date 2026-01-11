@@ -90,6 +90,7 @@ Root privileges (required to access /dev/fb0)
 ## Build
 
 `gcc -o nightmode main.c -O2`
+
 Run
 
 `sudo ./nightmode`
