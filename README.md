@@ -87,13 +87,13 @@ GCC Compiler
 Root privileges (required to access /dev/fb0)
 
 ## Build
-
-`gcc -o nightmode main.c -O2`
-
+```bash
+gcc -o nightmode main.c -O2
+```
 Run
-
-`sudo ./nightmode`
-
+```bash
+sudo ./nightmode
+```
 ### The Data Flow
 ```mermaid
 graph LR
@@ -102,3 +102,4 @@ graph LR
     C -->|Direct Write| D[Display Output]
     style A fill:#f9f,stroke:#333,stroke-width:2px
     style C fill:#ccf,stroke:#333,stroke-width:2px
+```
