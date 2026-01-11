@@ -1,47 +1,35 @@
-⚡ Overview:
-A lightweight, zero-dependency C utility designed to implement "Night Mode" (Blue Light Filtering) by interacting directly with the Linux Kernel Framebuffer (/dev/fb0).
+# Kernel-Level Night Mode Utility (Linux)
 
-Unlike standard tools (Redshift, GNOME Night Light) which rely on heavy display server composers (X11/Wayland), this utility bypasses the display server entirely to manipulate raw pixel data.
+![Language](https://img.shields.io/badge/Language-C-00599C?style=for-the-badge&logo=c&logoColor=white)
+![Platform](https://img.shields.io/badge/Platform-Linux_Kernel-FCC624?style=for-the-badge&logo=linux&logoColor=black)
+![Status](https://img.shields.io/badge/Status-Active_Development-orange?style=for-the-badge)
+![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 
-Target Hardware: Legacy systems with extreme resource constraints (Tested on: LG RD400, 512MB RAM).
+> **A zero-dependency display utility for direct framebuffer manipulation in ultra-low resource environments.**
 
-🔧 Technical Architecture:
+---
 
-This tool operates in User Space but interacts directly with Kernel Space interfaces to modify the display output.
+## 📖 Overview
+This project is a lightweight C utility designed to implement "Night Mode" (Blue Light Filtering) by interacting directly with the Linux Kernel Framebuffer (`/dev/fb0`).
 
-The Mechanism:
-Device Access: Opens the framebuffer device file (/dev/fb0).
+Unlike standard tools (Redshift, GNOME Night Light) which rely on heavy display server composers (X11/Wayland), this utility **bypasses the display server entirely** to manipulate raw pixel data in video memory.
 
-Screen Info Retrieval: Uses ioctl system calls to retrieve variable screen information (vinfo) and fixed screen information (finfo) (resolution, bit depth, offset).
+**Target Hardware:** Legacy systems with extreme resource constraints.
+* **Tested Device:** LG RD400 Laptop
+* **Constraint:** 512MB RAM, Single Core CPU
+* **Goal:** <2MB Memory Footprint, Zero Latency
 
-Direct Memory Mapping: Uses mmap() to map the framebuffer device into the process's memory space, allowing direct read/write access to the pixel array.
+---
 
-Pixel Manipulation:
+## ⚙️ Technical Architecture
 
-Iterates through the mapped memory buffer.
+This tool operates in **User Space** but acts on **Kernel Interfaces**. It treats the screen as a raw file, mapping video memory directly into the program's address space.
 
-Performs bitwise operations on RGBA values to reduce the Blue channel intensity based on a calculated temperature curve.
-
-Writes modified bytes back to the buffer instantly.
-
-🚀 Why "From Scratch"? (The Problem)
-Existing solutions were unsuitable for the target hardware environment:
-
-Bloat: Standard tools require heavy dependencies (Gtk, Python runtimes, X11 extensions).
-
-Latency: Compositors introduce input lag on single-core legacy CPUs.
-
-Memory Footprint: The target device (512MB RAM) creates a hard constraint. This utility runs with <2MB memory footprint.
-
-🛠 Implementation Details (In Progress)
-Current State:
-
-[x] Framebuffer device initialization.
-
-[x] mmap implementation for read/write access.
-
-[ ] Optimization of the color-shifting algorithm (moving from floating point to integer arithmetic for speed).
-
-[ ] Handling different pixel formats (16-bit vs 32-bit depth).
-
-Note: This repository is currently under active development as part of a Systems Programming study.
+### The Data Flow
+```mermaid
+graph LR
+    A[User Space App] -->|ioctl| B(Get Screen Info)
+    A -->|mmap| C(Video Memory / VRAM)
+    C -->|Direct Write| D[Display Output]
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style C fill:#ccf,stroke:#333,stroke-width:2px
