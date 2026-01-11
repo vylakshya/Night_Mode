@@ -5,7 +5,8 @@ Unlike standard tools (Redshift, GNOME Night Light) which rely on heavy display 
 
 Target Hardware: Legacy systems with extreme resource constraints (Tested on: LG RD400, 512MB RAM).
 
-🔧 Technical Architecture
+🔧 Technical Architecture:
+
 This tool operates in User Space but interacts directly with Kernel Space interfaces to modify the display output.
 
 The Mechanism:
