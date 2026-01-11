@@ -1,4 +1,4 @@
-⚡ Overview
+⚡ Overview:
 A lightweight, zero-dependency C utility designed to implement "Night Mode" (Blue Light Filtering) by interacting directly with the Linux Kernel Framebuffer (/dev/fb0).
 
 Unlike standard tools (Redshift, GNOME Night Light) which rely on heavy display server composers (X11/Wayland), this utility bypasses the display server entirely to manipulate raw pixel data.
