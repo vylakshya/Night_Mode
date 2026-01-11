@@ -25,14 +25,6 @@ Unlike standard tools (Redshift, GNOME Night Light) which rely on heavy display 
 
 This tool operates in **User Space** but acts on **Kernel Interfaces**. It treats the screen as a raw file, mapping video memory directly into the program's address space.
 
-### The Data Flow
-```mermaid
-graph LR
-    A[User Space App] -->|ioctl| B(Get Screen Info)
-    A -->|mmap| C(Video Memory / VRAM)
-    C -->|Direct Write| D[Display Output]
-    style A fill:#f9f,stroke:#333,stroke-width:2px
-    style C fill:#ccf,stroke:#333,stroke-width:2px
 
 Key Mechanisms
 ioctl System Calls: Retrieves variable screen info (vinfo) and fixed screen info (finfo) to understand resolution and bit depth (16-bit vs 32-bit).
@@ -111,3 +103,12 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 When you upload the code, include a file named `main.c` even if it is incomplete. Put the basic `open` and `ioctl` skeleton code in there.
 
 Having a file named `main.c` makes the **Language: C** badge appear automatically on GitHub, which reinforces your profile as a C programmer.
+
+### The Data Flow
+```mermaid
+graph LR
+    A[User Space App] -->|ioctl| B(Get Screen Info)
+    A -->|mmap| C(Video Memory / VRAM)
+    C -->|Direct Write| D[Display Output]
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style C fill:#ccf,stroke:#333,stroke-width:2px
