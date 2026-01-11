@@ -2,8 +2,7 @@
 
 ![Language](https://img.shields.io/badge/Language-C-00599C?style=for-the-badge&logo=c&logoColor=white)
 ![Platform](https://img.shields.io/badge/Platform-Linux_Kernel-FCC624?style=for-the-badge&logo=linux&logoColor=black)
-![Status](https://img.shields.io/badge/Status-Active_Development-orange?style=for-the-badge)
-![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
+
 
 > **A zero-dependency display utility for direct framebuffer manipulation in ultra-low resource environments.**
 
