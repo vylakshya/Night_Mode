@@ -87,14 +87,12 @@ GCC Compiler
 
 Root privileges (required to access /dev/fb0)
 
-Build
-#Bash
+## Build
 
-gcc -o nightmode main.c -O2
+`gcc -o nightmode main.c -O2`
 Run
-#Bash
 
-sudo ./nightmode
+`sudo ./nightmode`
 
 
 
