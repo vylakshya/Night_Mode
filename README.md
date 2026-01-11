@@ -88,15 +88,14 @@ GCC Compiler
 Root privileges (required to access /dev/fb0)
 
 Build
-Bash
+#Bash
 
 gcc -o nightmode main.c -O2
 Run
-Bash
+#Bash
 
 sudo ./nightmode
-📄 License
-This project is licensed under the MIT License - see the LICENSE file for details.
+
 
 
 ### **One Final Tip for You:**
