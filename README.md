@@ -95,13 +95,6 @@ Run
 
 `sudo ./nightmode`
 
-
-
-### **One Final Tip for You:**
-When you upload the code, include a file named `main.c` even if it is incomplete. Put the basic `open` and `ioctl` skeleton code in there.
-
-Having a file named `main.c` makes the **Language: C** badge appear automatically on GitHub, which reinforces your profile as a C programmer.
-
 ### The Data Flow
 ```mermaid
 graph LR
