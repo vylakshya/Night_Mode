@@ -77,7 +77,7 @@ Handle page alignment
 
 Add flags for temperature (e.g., --temp 3000K)
 
-💻 Installation & Usage (Coming Soon)
+## 💻 Installation & Usage (Coming Soon)
 Since the codebase is currently being finalized, these instructions are for the upcoming release.
 
 Prerequisites
