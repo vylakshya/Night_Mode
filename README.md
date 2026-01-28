@@ -15,7 +15,7 @@ Unlike standard tools (Redshift, GNOME Night Light) which rely on heavy display 
 
 **Target Hardware:** Legacy systems with extreme resource constraints.
 * **Tested Device:** LG RD400 Laptop
-* **Constraint:** 512MB RAM, Single Core CPU
+* **Constraint:** 512MB RAM, Single Core CPU Intel Celeron M
 * **Goal:** <2MB Memory Footprint, Zero Latency
 
 ---
