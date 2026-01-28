@@ -40,7 +40,7 @@ Applies a temperature coefficient to the Blue/Green channels.
 
 Writes the pixel back instantly.
 
-Why "From Scratch"?
+## Why "From Scratch"?
 Modern Linux desktop environments assume hardware acceleration and ample RAM. On legacy hardware (512MB RAM), standard solutions fail:
 
 Bloat: Tools like Redshift require Gtk/Python runtimes which consume ~50-100MB RAM.
