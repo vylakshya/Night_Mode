@@ -1,7 +1,3 @@
+#include<math.h>
 
-
-void calc(){
-    int r, g, b, a;
-    
-
-}
+void calc(int temp);
