@@ -20,7 +20,7 @@ Unlike standard tools (Redshift, GNOME Night Light) which rely on heavy display 
 
 ---
 
-## ⚙️ Technical Architecture
+## Technical Architecture
 
 This tool operates in **User Space** but acts on **Kernel Interfaces**. It treats the screen as a raw file, mapping video memory directly into the program's address space.
 
@@ -40,7 +40,7 @@ Applies a temperature coefficient to the Blue/Green channels.
 
 Writes the pixel back instantly.
 
-🚀 Why "From Scratch"?
+Why "From Scratch"?
 Modern Linux desktop environments assume hardware acceleration and ample RAM. On legacy hardware (512MB RAM), standard solutions fail:
 
 Bloat: Tools like Redshift require Gtk/Python runtimes which consume ~50-100MB RAM.
@@ -51,7 +51,7 @@ Dependency Hell: Older distros (e.g., antiX) may lack Wayland support.
 
 This utility is a study in Systems Programming under constraints, proving that useful graphical effects can be achieved with pure C and kernel interfaces.
 
-🛠 Project Roadmap & Status
+ Project Roadmap & Status
 This repository is currently under active development.
 
 [x] Phase 1: Initialization
@@ -76,7 +76,7 @@ Handle page alignment
 
 Add flags for temperature (e.g., --temp 3000K)
 
-## 💻 Installation & Usage (Coming Soon)
+##  Installation & Usage (Coming Soon)
 Since the codebase is currently being finalized, these instructions are for the upcoming release.
 
 Prerequisites
