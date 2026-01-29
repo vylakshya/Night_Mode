@@ -6,7 +6,17 @@
 #include<linux/fb.h>
 
 
+int temp = 0;
+
 int main(int argc, char *argv[]){
+    
+    char *c = argv[1];
+    int i = 0;
+    while(c[i] != '\0'){
+
+        temp = 10*temp + (int)(c[i] - '0');
+        i++;
+    }
     
     int framebuffer;
     mode_t permissions;
