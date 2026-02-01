@@ -16,7 +16,7 @@ Unlike standard tools (Redshift, GNOME Night Light) which rely on heavy display 
 **Target Hardware:** Legacy systems with extreme resource constraints.
 * **Tested Device:** LG RD400 Laptop
 * **Constraint:** 512MB RAM, Single Core CPU Intel Celeron M
-* **Goal:** <2MB Memory Footprint, Zero Latency
+* **Goal:** <2MB Memory Footprint, Zero Latency, O(1) Lookup complexity per pixel.
 
 ---
 
@@ -26,19 +26,28 @@ This tool operates in **User Space** but acts on **Kernel Interfaces**. It treat
 
 
 Key Mechanisms
-ioctl System Calls: Retrieves variable screen info (vinfo) and fixed screen info (finfo) to understand resolution and bit depth (16-bit vs 32-bit).
+ioctl (Device Control): Used to query the driver for fb_var_screeninfo (Resolution, BPP) and fb_fix_screeninfo (Memory Length, Stride/Pitch).
 
-mmap (Memory Mapping): Maps the framebuffer device file into the application's memory. This allows the program to treat the screen like a standard array of integers.
+mmap (Zero-Copy Access): Instead of using write() syscalls which incur context-switching overhead, we map the physical framebuffer address 0xB8000... directly to a user-space pointer uint8_t *fbp.
 
-Bitwise Color Shifting:
+Stride Management: Manually handles memory padding (the difference between width * 4 and line_length) to prevent image skewing, emulating 2D strided memory access patterns common in CUDA/HPC kernels.
 
-Reads the pixel at offset x.
+## Optimization Methodology
+A core component of this project is comparing naive implementations vs. systems-optimized approaches.
 
-Deconstructs RGBA channels using bitmasks.
+1. Integer Arithmetic vs. Floating Point
+On the target Celeron M processor, the Floating Point Unit (FPU) is significantly slower than the Integer ALU.
 
-Applies a temperature coefficient to the Blue/Green channels.
+Naive Approach: pixel = pixel * 0.75f; (Requires FPU, high latency)
 
-Writes the pixel back instantly.
+Optimized Approach: pixel = (pixel * 192) >> 8; (Integer multiplication + Bit shift)
+
+2. Compile-Time Lookup Tables (LUTs)
+To further reduce CPU cycles inside the O(N) pixel loop (where N = 2,073,600 pixels for 1080p), I implemented pre-computed arrays.
+
+Concept: Instead of calculating color values for every pixel, the program generates a 256-byte array at startup.
+
+Result: The heavy multiplication logic is removed from the hot path. The loop becomes a simple memory fetch: output = LUT[input].
 
 ## Why "From Scratch"?
 Modern Linux desktop environments assume hardware acceleration and ample RAM. On legacy hardware (512MB RAM), standard solutions fail:
