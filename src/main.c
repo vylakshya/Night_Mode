@@ -18,13 +18,13 @@ int main(int argc, char *argv[]){
         i++;
     }
     
-    int framebuffer;
+    int fb;
     mode_t permissions;
     int pixelsRead;
     int flags;
     permissions = S_IRUSR | S_IWUSR | S_IRGRP | S_WGRP | S_IWOTH | S_IROTH;
     
-    framebuffer = open("dev/fb0", S_WRONLY, permissions); 
+    fb = open("dev/fb0", S_WRONLY, permissions); 
 
     return 0;
 }
