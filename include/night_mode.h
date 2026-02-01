@@ -1,6 +1,6 @@
 #include<math.h>
 
-void calc(int temp, int r, int g, int b, int a){
+void calc();
 
-
-}
+//changed the plan of including any file
+// directly written the logic on the main file
