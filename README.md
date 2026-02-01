@@ -63,14 +63,12 @@ This utility is a study in Systems Programming under constraints, proving that u
 This repository is currently under active development.
 
 ##  Installation & Usage (Coming Soon)
-Since the codebase is currently being finalized, these instructions are for the upcoming release.
 
 Prerequisites
 Linux Kernel (any version with fbdev enabled)
 
 GCC Compiler
 
-Root privileges (required to access /dev/fb0)
 
 ## Build
 ```bash
