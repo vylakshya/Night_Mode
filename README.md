@@ -56,34 +56,11 @@ Bloat: Tools like Redshift require Gtk/Python runtimes which consume ~50-100MB R
 
 Latency: Compositors introduce input lag on single-core CPUs.
 
-Dependency Hell: Older distros (e.g., antiX) may lack Wayland support.
 
 This utility is a study in Systems Programming under constraints, proving that useful graphical effects can be achieved with pure C and kernel interfaces.
 
  Project Roadmap & Status
 This repository is currently under active development.
-
-[x] Phase 1: Initialization
-
-Open /dev/fb0
-
-Retrieve screen geometry via ioctl
-
-[x] Phase 2: Memory Management
-
-Implement mmap for read/write access
-
-Handle page alignment
-
-[ ] Phase 3: Color Algorithms (In Progress)
-
-[ ] Implement RGB extraction logic
-
-[ ] Optimize temperature math (Move from float to integer arithmetic for performance)
-
-[ ] Phase 4: CLI Interface
-
-Add flags for temperature (e.g., --temp 3000K)
 
 ##  Installation & Usage (Coming Soon)
 Since the codebase is currently being finalized, these instructions are for the upcoming release.
@@ -101,14 +78,5 @@ gcc -o nightmode main.c -O2
 ```
 Run
 ```bash
-sudo ./nightmode
-```
-### The Data Flow
-```mermaid
-graph LR
-    A[User Space App] -->|ioctl| B(Get Screen Info)
-    A -->|mmap| C(Video Memory / VRAM)
-    C -->|Direct Write| D[Display Output]
-    style A fill:#f9f,stroke:#333,stroke-width:2px
-    style C fill:#ccf,stroke:#333,stroke-width:2px
+sudo ./nightmode 100
 ```
